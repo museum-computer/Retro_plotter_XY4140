@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>XY 4140 — схема подключения</title>
+<style>
+  @page { size: A4 landscape; margin: 6mm; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #1a1a1a; }
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  svg { width: 100%; height: auto; display: block; }
+  h2 { font-size: 15pt; margin: 0 0 2mm 0; color: #14396e; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 1.5mm 0; color: #14396e; }
+  p  { font-size: 9.5pt; margin: 0 0 2mm 0; line-height: 1.35; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; margin-bottom: 1mm; }
+  th, td { border: 1px solid #b8c4d6; padding: 1.1mm 1.6mm; text-align: left; vertical-align: top; }
+  th { background: #eaf0f8; color: #14396e; font-weight: 600; }
+  td.m { font-family: Consolas, monospace; white-space: nowrap; }
+  .cols { display: flex; gap: 5mm; }
+  .cols > div { flex: 1; }
+  ol, ul { font-size: 9.5pt; margin: 0 0 2mm 0; padding-left: 5mm; line-height: 1.4; }
+  .note { background: #fff8e6; border: 1px solid #e0c179; padding: 2.5mm 3mm; font-size: 9pt; }
+  .foot { position: running(f); }
+</style>
+</head>
+<body>
+
+<div class="page">
+<svg viewBox="0 0 1440 990" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <style>
+    .wt  { stroke-linecap: round; fill: none; }
+    .sig { stroke: #1b4f9c; stroke-width: 3; }
+    .spi { stroke: #2e7d32; stroke-width: 3; }
+    .btn { stroke: #b26a00; stroke-width: 3; }
+    .pwr { stroke: #c02020; stroke-width: 3; }
+    .gnd { stroke: #222;    stroke-width: 3; }
+    .dot { fill: #222; }
+    .lb  { font-size: 15px; fill: #14243d; }
+    .lbs { font-size: 12px; fill: #5a6b80; }
+    .tt  { font-size: 17px; font-weight: 600; }
+    .rt  { font-size: 11.5px; font-weight: 600; fill: #fff; }
+  </style>
+
+  <rect x="0" y="0" width="1440" height="990" fill="#ffffff"/>
+
+  <!-- заголовок -->
+  <text x="30" y="46" font-size="30" font-weight="700" fill="#14396e">XY 4140 — схема подключения к Arduino Nano</text>
+  <text x="30" y="74" font-size="15" fill="#5a6b80">Драйвер libraries/XY4140 + прошивка xy4140_plotter (печать HPGL с microSD). Обозначения совпадают с пинами в .ino и XY4140.h.</text>
+  <text x="1410" y="46" font-size="14" fill="#98a4b5" text-anchor="end">стр. 1 из 3</text>
+
+  <!-- шина +5 V -->
+  <line class="wt pwr" x1="30" y1="100" x2="1410" y2="100"/>
+  <text x="34" y="92" font-size="14" font-weight="600" fill="#c02020">+5 V</text>
+
+  <!-- шина GND -->
+  <line class="wt gnd" x1="20" y1="950" x2="1420" y2="950" stroke-width="4"/>
+  <text x="1418" y="972" font-size="13" fill="#222" text-anchor="end">GND — общая земля (силовая и логическая)</text>
+
+  <!-- ================= PLOTTER ================= -->
+  <rect x="40" y="140" width="340" height="330" rx="8" fill="#f7f6f0" stroke="#6b6b52" stroke-width="2.5"/>
+  <text class="tt" x="56" y="170" fill="#4d4d3a">XY 4140 · разъём управления</text>
+  <text class="lbs" x="56" y="190">7 мест · замерено: масса на контакте 2</text>
+
+<text class="lb" x="368" y="222" text-anchor="end" fill="#98a4b5">1 ?</text>
+  <text class="lb" x="368" y="256" text-anchor="end" font-weight="700">2 GND</text>
+  <text class="lb" x="368" y="290" text-anchor="end" fill="#98a4b5">3 ?</text>
+  <text class="lb" x="368" y="324" text-anchor="end" fill="#98a4b5">4 ?</text>
+  <text class="lb" x="368" y="358" text-anchor="end" font-weight="700" fill="#1b5e20">5 STEP</text>
+  <text class="lb" x="368" y="392" text-anchor="end" fill="#98a4b5">6 ?</text>
+  <text class="lb" x="368" y="426" text-anchor="end" fill="#98a4b5">7 ?</text>
+
+  <circle cx="380" cy="216" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle class="dot" cx="380" cy="250" r="3.5"/>
+  <circle cx="380" cy="284" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle cx="380" cy="318" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle class="dot" cx="380" cy="352" r="3.5"/>
+  <circle cx="380" cy="386" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle cx="380" cy="420" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+
+  <text class="lbs" x="56" y="222" fill="#98a4b5">не определён</text>
+  <text class="lbs" x="56" y="256" fill="#222" font-weight="600">масса · замерено</text>
+  <text class="lbs" x="56" y="290" fill="#98a4b5">не определён</text>
+  <text class="lbs" x="56" y="324" fill="#98a4b5">не определён</text>
+  <text class="lbs" x="56" y="358" fill="#1b5e20" font-weight="600">проверено: каретка едет</text>
+  <text class="lbs" x="56" y="392" fill="#98a4b5">не определён</text>
+  <text class="lbs" x="56" y="426" fill="#98a4b5">не измерен</text>
+
+  <text class="lbs" x="56" y="452" fill="#a03a3a" font-weight="600">известны только 2 и 5</text>
+  <text class="lbs" x="56" y="466" fill="#a03a3a">остальные ищет test_wires</text>
+
+  <!-- ================= READY ================= -->
+  <rect x="40" y="510" width="460" height="200" rx="8" fill="#f6f2ff" stroke="#6b4fa8" stroke-width="2"/>
+  <text class="tt" x="56" y="538" fill="#4a2f8a" font-size="16">READY — не требуется</text>
+  <text class="lbs" x="56" y="558" fill="#4a2f8a">проверено на приборе: каретка едет без handshake</text>
+
+  <text class="lbs" x="56" y="590" fill="#4a2f8a">В чужой документации эта линия описана как согласование:</text>
+  <text class="lbs" x="66" y="606" fill="#4a2f8a">D6 дёргает LOW, потом HIGH, прибор тянет линию в LOW,</text>
+  <text class="lbs" x="66" y="622" fill="#4a2f8a">D7 это читает. На этом приборе модель не подтвердилась —</text>
+  <text class="lbs" x="66" y="638" fill="#4a2f8a">шаги идут без неё, а контакт READY так и не найден.</text>
+
+  <text class="lbs" x="56" y="668" fill="#4a2f8a">Контакт 7 не измерен. Лампа READY на приборе</text>
+  <text class="lbs" x="66" y="684" fill="#4a2f8a">не загоралась ни разу — её назначение неизвестно.</text>
+
+  <text class="lbs" x="56" y="700" fill="#a03a3a">D6 и D7 оставлены свободными.</text>
+
+  <!-- ================= NANO ================= -->
+  <rect x="520" y="140" width="430" height="740" rx="8" fill="#eef3fb" stroke="#2b5fa8" stroke-width="2.5"/>
+  <text x="535" y="174" font-size="20" font-weight="700" fill="#14396e">Arduino Nano</text>
+  <text class="lbs" x="535" y="194">ATmega328P · 5 В / 16 МГц · выходы 5 В TTL</text>
+  <text class="lbs" x="535" y="212">на плате: D2–D12 — правый разъём, D13 и A0 — левый (стр. 2)</text>
+
+  <line class="wt pwr" x1="620" y1="100" x2="620" y2="140"/>
+  <circle class="dot" cx="620" cy="140" r="3.5"/>
+  <text class="lbs" x="630" y="122">5V</text>
+
+  <text class="lb" x="534" y="226">D2 · PEN · ищется</text>
+  <text class="lb" x="534" y="294" font-weight="700" fill="#1b5e20">D3 · STEP · есть</text>
+  <text class="lb" x="534" y="328">D4 · X/Y · ищется</text>
+  <text class="lb" x="534" y="362">D5 · +/- · ищется</text>
+  <text class="lb" x="534" y="590" fill="#98a4b5">D6 · свободен</text>
+  <text class="lb" x="534" y="680" fill="#98a4b5">D7 · свободен</text>
+  <circle cx="520" cy="220" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle class="dot" cx="520" cy="288" r="3.5"/>
+  <circle cx="520" cy="322" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle cx="520" cy="356" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle cx="520" cy="585" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+  <circle cx="520" cy="675" r="3.5" fill="#ffffff" stroke="#98a4b5" stroke-width="2" stroke-dasharray="2,2"/>
+
+  <text class="lb" x="936" y="186" text-anchor="end">D13 · SCK</text>
+  <text class="lb" x="936" y="236" text-anchor="end">D12 · MISO</text>
+  <text class="lb" x="936" y="286" text-anchor="end">D11 · MOSI</text>
+  <text class="lb" x="936" y="336" text-anchor="end">D10 · CS</text>
+  <text class="lb" x="936" y="546" text-anchor="end">D8 · NEXT</text>
+  <text class="lb" x="936" y="596" text-anchor="end">D9 · STOP</text>
+  <text class="lb" x="936" y="866" text-anchor="end">A0 · LED</text>
+  <circle class="dot" cx="950" cy="180" r="3.5"/><circle class="dot" cx="950" cy="230" r="3.5"/>
+  <circle class="dot" cx="950" cy="280" r="3.5"/><circle class="dot" cx="950" cy="330" r="3.5"/>
+  <circle class="dot" cx="950" cy="540" r="3.5"/><circle class="dot" cx="950" cy="590" r="3.5"/>
+  <circle class="dot" cx="950" cy="860" r="3.5"/>
+
+  <circle class="dot" cx="735" cy="880" r="3.5"/>
+  <text class="lbs" x="735" y="868" text-anchor="middle">GND</text>
+  <line class="wt gnd" x1="735" y1="880" x2="735" y2="950"/>
+
+  <!-- условные обозначения внутри корпуса Nano -->
+  <rect x="528" y="692" width="404" height="128" rx="6" fill="#ffffff" stroke="#c9d4e6" stroke-width="1.5"/>
+  <text x="544" y="714" font-size="13" font-weight="600" fill="#14396e">Условные обозначения</text>
+  <line class="wt sig" x1="546" y1="734" x2="578" y2="734"/><text class="lbs" x="586" y="739">сигналы PEN / STEP / X-Y / +/- и READY</text>
+  <line class="wt spi" x1="546" y1="756" x2="578" y2="756"/><text class="lbs" x="586" y="761">SPI microSD</text>
+  <line class="wt btn" x1="546" y1="778" x2="578" y2="778"/><text class="lbs" x="586" y="783">кнопки (подтяжка к 5 В внутри MCU)</text>
+  <line class="wt pwr" x1="546" y1="800" x2="578" y2="800"/><text class="lbs" x="586" y="805">питание 5 В и светодиод</text>
+
+  <!-- ================= SD ================= -->
+  <rect x="1100" y="130" width="270" height="270" rx="8" fill="#eefaf0" stroke="#2e7d32" stroke-width="2.5"/>
+  <text class="tt" x="1116" y="160" fill="#1b5e20">microSD (модуль SPI)</text>
+  <text class="lb" x="1114" y="186">SCK</text>
+  <text class="lb" x="1114" y="236">MISO</text>
+  <text class="lb" x="1114" y="286">MOSI</text>
+  <text class="lb" x="1114" y="336">CS</text>
+  <circle class="dot" cx="1100" cy="180" r="3.5"/><circle class="dot" cx="1100" cy="230" r="3.5"/>
+  <circle class="dot" cx="1100" cy="280" r="3.5"/><circle class="dot" cx="1100" cy="330" r="3.5"/>
+  <line class="wt pwr" x1="1300" y1="100" x2="1300" y2="130"/>
+  <circle class="dot" cx="1300" cy="130" r="3.5"/>
+  <text class="lb" x="1300" y="120" text-anchor="middle">VCC 5 В</text>
+  <circle class="dot" cx="1200" cy="400" r="3.5"/>
+  <text class="lbs" x="1200" y="386" text-anchor="middle">GND</text>
+
+  <!-- ================= BUTTONS ================= -->
+  <rect x="1100" y="470" width="270" height="170" rx="8" fill="#fff6e8" stroke="#b26a00" stroke-width="2.5"/>
+  <text class="tt" x="1116" y="498" fill="#8a4f00">Кнопки (второй вывод на GND)</text>
+  <text class="lb" x="1114" y="546">D8 · NEXT</text>
+  <text class="lb" x="1114" y="596">D9 · STOP</text>
+  <path class="wt" stroke="#b26a00" stroke-width="2.5" fill="none" d="M1100 540 H1148 M1178 540 H1200 V615 H1370"/>
+  <rect x="1148" y="531" width="30" height="18" rx="3" fill="#ffffff" stroke="#b26a00" stroke-width="2"/>
+  <path class="wt" stroke="#b26a00" stroke-width="2.5" fill="none" d="M1100 590 H1148 M1178 590 H1200"/>
+  <rect x="1148" y="581" width="30" height="18" rx="3" fill="#ffffff" stroke="#b26a00" stroke-width="2"/>
+  <circle class="dot" cx="1100" cy="540" r="3.5"/><circle class="dot" cx="1100" cy="590" r="3.5"/>
+  <circle class="dot" cx="1200" cy="615" r="3.5"/>
+  <text class="lbs" x="1215" y="611" fill="#8a4f00">GND</text>
+  <text class="lbs" x="1215" y="520" fill="#8a4f00">нажатие = LOW</text>
+  <text class="lbs" x="1215" y="537" fill="#8a4f00">NEXT: следующий файл /</text>
+  <text class="lbs" x="1215" y="553" fill="#8a4f00">прервать текущий</text>
+  <text class="lbs" x="1215" y="578" fill="#8a4f00">STOP: остановка даже</text>
+  <text class="lbs" x="1215" y="594" fill="#8a4f00">внутри длинной штриховки</text>
+
+  <!-- ================= LED ================= -->
+  <rect x="1100" y="798" width="270" height="112" rx="8" fill="#fdeeee" stroke="#b02a2a" stroke-width="2.5"/>
+  <text class="tt" x="1116" y="826" fill="#8a1f1f">Индикация состояния</text>
+  <path class="wt" stroke="#c02020" stroke-width="2.5" fill="none" d="M1100 860 H1140 M1190 860 H1218 M1248 860 H1330 V910"/>
+  <rect x="1140" y="853" width="50" height="14" fill="#ffffff" stroke="#c02020" stroke-width="2"/>
+  <text class="lbs" x="1165" y="848" text-anchor="middle" fill="#8a1f1f">1 кОм</text>
+  <polygon points="1218,849 1218,871 1244,860" fill="#ffffff" stroke="#c02020" stroke-width="2"/>
+  <line x1="1244" y1="847" x2="1244" y2="873" stroke="#c02020" stroke-width="2.5"/>
+  <line class="wt" stroke="#c02020" stroke-width="1.5" d="M1252 854 L1268 846 M1258 860 L1274 852"/>
+  <text class="lbs" x="1230" y="890" fill="#8a1f1f">LED</text>
+  <text class="lbs" x="1340" y="900" fill="#8a1f1f">GND</text>
+  <circle class="dot" cx="1100" cy="860" r="3.5"/>
+  <circle class="dot" cx="1330" cy="910" r="3.5"/>
+
+  <!-- ================= ПРОВОДА ================= -->
+  <!-- единственный подтвержденный сигнал: контакт 5 (STEP) -> D3 -->
+  <line class="wt sig" x1="520" y1="288" x2="380" y2="352"/>
+  <text class="lbs" x="450" y="305" text-anchor="middle" fill="#1b5e20" font-weight="600">контакт 5 = STEP</text>
+  <!-- plotter GND (contact 2) -->
+  <path class="wt gnd" d="M380 250 H20 V950"/>
+  <!-- nano -> SD -->
+  <line class="wt spi" x1="950" y1="180" x2="1100" y2="180"/>
+  <line class="wt spi" x1="950" y1="230" x2="1100" y2="230"/>
+  <line class="wt spi" x1="950" y1="280" x2="1100" y2="280"/>
+  <line class="wt spi" x1="950" y1="330" x2="1100" y2="330"/>
+  <!-- SD GND -->
+  <path class="wt gnd" d="M1200 400 H1410 V950"/>
+  <!-- nano -> buttons -->
+  <line class="wt btn" x1="950" y1="540" x2="1100" y2="540"/>
+  <line class="wt btn" x1="950" y1="590" x2="1100" y2="590"/>
+  <!-- buttons GND -->
+  <path class="wt gnd" d="M1370 615 H1390 V950"/>
+  <!-- nano -> LED -->
+  <line class="wt pwr" x1="950" y1="860" x2="1100" y2="860"/>
+<!-- LED GND -->
+  <path class="wt gnd" d="M1330 910 V950"/>
+</svg>
+</div>
+
+<div class="page">
+  <h2>XY 4140 + Arduino Nano — подключение, сигналы и порядок проверки</h2>
+
+  <h3>1. Сигналы управления (разъём XY 4140, 7 мест)</h3>
+  <table>
+    <tr><th style="width:16%">Пин Nano</th><th style="width:16%">Контакт</th><th style="width:22%">Статус</th><th>Смысл</th></tr>
+    <tr><td class="m">D3</td><td class="m">5 STEP</td><td><b>проверено</b></td><td>Каждый переход в LOW — один шаг 1/10 мм. При подключении прибор поехал, это подтверждает контакт и уровни 5 В TTL.</td></tr>
+    <tr><td class="m">D4</td><td class="m">? X/Y</td><td>ищется</td><td>LOW — ось CART (каретка по рельсу), HIGH — ось PAPER (подача бумаги).</td></tr>
+    <tr><td class="m">D5</td><td class="m">? +/-</td><td>ищется</td><td>Выбор направления. Полярность на этом экземпляре неизвестна — константа DIR_INVERT.</td></tr>
+    <tr><td class="m">D2</td><td class="m">? PEN</td><td>ищется</td><td>Управление пером. При печати перо физически опускается, если включён магнитный прижим (USE_MAGNET).</td></tr>
+    <tr><td class="m">D6</td><td class="m">—</td><td>свободен</td><td>Не используется: движение идёт без handshake.</td></tr>
+    <tr><td class="m">D7</td><td class="m">—</td><td>свободен</td><td>Не используется по той же причине.</td></tr>
+    <tr><td class="m">GND</td><td class="m">2 GND</td><td><b>замерено</b></td><td>Общая земля с графопостроителем и драйверами двигателей.</td></tr>
+    <tr><td class="m">—</td><td class="m">1, 3, 4, 6</td><td>не определены</td><td>В покое 5 В, назначение не выяснено.</td></tr>
+    <tr><td class="m">—</td><td class="m">7</td><td>не измерен</td><td>Назначение неизвестно.</td></tr>
+  </table>
+
+  <p class="note"><b>Что есть факт, а что нет.</b> Фактами являются ровно две вещи: <b>масса на контакте 2</b> (замерено мультиметром) и <b>STEP на контакте 5</b> (проверено: при подключении к D3 прибор поехал). Всё остальное — предположения, и записанные в проекте версии A и B обе <b>опровергнуты</b>: в каждой на контакте 5 стоял X/Y, а оказался STEP. Таблицу из чужого источника использовать нельзя, поэтому линии на схеме показаны незаполненными и ищутся скетчем <span class="m">test_wires</span>. Все пять сигналов в покое по 5 В — это 5-вольтовый интерфейс, преобразователь уровня не нужен. <b>Не соединяйте два контакта между собой</b> — обе линии уже сидят на 5 В от логики прибора.</p>
+
+  <div class="cols">
+    <div>
+      <h3>2. microSD (модуль SPI)</h3>
+      <table>
+        <tr><th style="width:40%">Контакт модуля</th><th>Пин Nano</th></tr>
+        <tr><td class="m">CS</td><td class="m">D10</td></tr>
+        <tr><td class="m">MOSI</td><td class="m">D11</td></tr>
+        <tr><td class="m">MISO</td><td class="m">D12</td></tr>
+        <tr><td class="m">SCK</td><td class="m">D13</td></tr>
+        <tr><td class="m">VCC</td><td class="m">+5 V</td></tr>
+        <tr><td class="m">GND</td><td class="m">GND</td></tr>
+      </table>
+      <p>Файлы читаются только из корня карты, в порядке каталога. Используйте короткие ASCII-имена: SD-библиотека открывает файлы по укороченному имени 8.3.</p>
+    </div>
+    <div>
+      <h3>3. Кнопки и светодиод</h3>
+      <table>
+        <tr><th style="width:22%">Пин</th><th style="width:26%">Элемент</th><th>Действие</th></tr>
+        <tr><td class="m">D8</td><td>кнопка на GND</td><td>NEXT: в покое — печать следующего файла, при печати — прервать текущий рисунок.</td></tr>
+        <tr><td class="m">D9</td><td>кнопка на GND</td><td>STOP: остановка, в том числе посреди длинной штриховки.</td></tr>
+        <tr><td class="m">A0</td><td>LED + 1 кОм</td><td>Индикация: ожидание / печать / файл готов / нет карты или ошибка.</td></tr>
+      </table>
+      <p>Подтяжка к 5 В включена программно (INPUT_PULLUP), внешние резисторы не нужны. Светодиод включается в землю, ток ограничивается резистором 1 кОм.</p>
+      <p>В текущей прошивке включён режим проверки <span class="m">SELFTEST_A 1</span>: при включении питания рисуется буква «A» и рамка поля, кнопки и microSD не используются. Описанные здесь действия кнопок и microSD относятся к режиму печати (<span class="m">SELFTEST_A 0</span>).</p>
+    </div>
+  </div>
+
+  <h3>4. Питание</h3>
+  <ul>
+    <li>220 В подключается только в штатный разъём питания графопостроителя.</li>
+    <li>Nano питается стабилизированными 5 В — удобно взять с клемм 5 В драйверов шаговых двигателей (если там есть 5 В) или от отдельного блока питания.</li>
+    <li>Земля Nano, драйверов двигателей и логики графопостроителя должна быть общей.</li>
+    <li>Двигатели и логика запитываются от источника графопостроителя, не от выводов Nano.</li>
+    <li>Сигналы Nano — 5 В TTL, подключаются к разъёму напрямую, без преобразователя уровня.</li>
+  </ul>
+
+  <div class="note">
+    <b>Перед первым включением</b>
+    <ol style="margin-top:1.5mm">
+      <li>Включите переключатель PEN на корпусе графопостроителя и убедитесь, что перо поднято; опускайте его только по команде.</li>
+      <li>Первое включение делайте без пера и без бумаги, лучше на подставке — при неверной полярности двигатели могут уйти в стену.</li>
+      <li>Тип выхода заранее выставлен в коде до <span class="m">pinMode()</span>, поэтому при включении питания на линии STEP не бывает ложного импульса.</li>
+      <li>Ось X не имеет концевика: перед печатью бумага должна стоять у левого исходного упора, тогда X = 0.</li>
+      <li>Паспортная область — 2550 × 1800 шагов (255 × 180 мм). В коде задано 2600 × 1850 — измерьте реальные поля на приборе (этап 4) и при необходимости поправьте <span class="m">MAX_X</span> / <span class="m">MAX_Y</span> в XY4140.h.</li>
+      <li>Если рисунок вышел повёрнутым или зеркальным — поменяйте <span class="m">SWAP_AXES</span>, <span class="m">X_FLIP</span>, <span class="m">Y_FLIP</span> в xy4140_plotter.ino.</li>
+    </ol>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h3>5. Проверка после сборки</h3>
+      <p style="margin-bottom:1.5mm"><b>Шаг 1 — найти провода.</b> Скетч <span class="m">test_wires</span>, Serial 115200. Кнопки не нужны, скетч работает сразу после прошивки и сам гоняет каретку циклом CART назад, CART вперёд, PAPER назад, PAPER вперёд, по 20 мм туда и обратно. Перо всё время поднято. Первые 6 с после прошивки прибор не трогается.</p>
+      <table>
+        <tr><th style="width:22%">Пин Nano</th><th>Что проверяем</th></tr>
+        <tr><td class="m">D3 · STEP</td><td>Приложить провод: каретка поехала — это STEP. <b>Контакт 5 — уже найден.</b></td></tr>
+        <tr><td class="m">D4 · X/Y</td><td>Найденный STEP оставить на месте, вторым проводом перебирать остальные контакты: каретка поедет то по бумаге, то по рельсу — это ось.</td></tr>
+        <tr><td class="m">D5 · +/-</td><td>Третьим проводом то же самое: на одном контакте направление перестанет совпадать с предыдущим.</td></tr>
+        <tr><td class="m">D2 · PEN</td><td>Перо опускается и поднимается.</td></tr>
+      </table>
+      <p>Каждый ход печатается в порт строкой вида <span class="m">chod 2 PAPER A</span>, так что видно текущую комбинацию. Лог не умеет проверить физическое движение — за этим нужно смотреть на сам прибор.</p>
+    </div>
+    <div>
+      <p style="margin-bottom:1.5mm"><b>Шаг 2 — стендовый тест.</b> Скетч <span class="m">test_interface</span>, Serial 115200, кнопка D8 переключает этапы, D9 останавливает.</p>
+      <table>
+        <tr><th style="width:22%">Этап</th><th>Что проверяем</th></tr>
+        <tr><td class="m">0</td><td>светодиод, обе линии направления, оба состояния индикатора прибора.</td></tr>
+        <tr><td class="m">1</td><td>PEN: перо поднимается и опускается по командам.</td></tr>
+        <tr><td class="m">2</td><td>homing по оси CART (Y) до концевого выключателя, ожидается ≈1850 шагов.</td></tr>
+        <tr><td class="m">3</td><td>прямоугольник 20 × 30 мм, проверка DIR_INVERT.</td></tr>
+        <tr><td class="m">4</td><td>полный ход, замер фактических полей, корректировка MAX_X / MAX_Y.</td></tr>
+      </table>
+      <p>Лог идёт только в стендовых скетчах; рабочая прошивка ничего не печатает в порт.</p>
+      <h3>6. Физические разъёмы Arduino Nano</h3>
+      <table>
+        <tr><th style="width:40%">Разъём</th><th>Пины</th></tr>
+        <tr><td class="m">правый (D13, 3V3, RST, GND, D2…D12)</td><td class="m">D2…D12, GND</td></tr>
+        <tr><td class="m">левый (A7…A0, REF, 3V3, D13, D12, VIN, GND)</td><td class="m">A0, 5V, GND</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
